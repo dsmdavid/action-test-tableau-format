@@ -30,16 +30,24 @@ def get_script_dir(follow_symlinks=True):
     if follow_symlinks:
         path = os.path.realpath(path)
     return os.path.dirname(path)
+@log_start
+def get_path_to_guide():
+    path_to_json = os.environ.get('PATH_TO_JSON')
+    if path_to_json:
+        logger.debug(f'Path_to_json: {path_to_json}')
+        return path_to_json
+    else:
+        logger.error('Style guide was not found')
+
+    sys.exit(1)
 
 if __name__ == '__main__':
     print('running')
-    print('logging - path')
-    print(os.environ.get('PATH_TO_JSON', 'PATH_TO_JSON not found in envs')
-    print('\n')
     try:
         modified_files = get_modified_files()
     except:
         sys.exit()
+    path_to_json = get_path_to_guide()
     print(modified_files)
     modified_files = list(filter(lambda x: 'twb' in x, modified_files))
     print(modified_files)
@@ -55,11 +63,6 @@ if __name__ == '__main__':
         commands.append(command)
         logger.debug(f'command: {command}')
 
-        # script_path = f"{path_src} --style-guide /src/tests/example_style_guide.json --tableau-workbook {filepath}"
-        # output = check_output([sys.executable, script_path],
-        #                     input='\n'.join(['query 1', 'query 2']),
-        #                     universal_newlines=True)
-        # subprocess.run(["python", f"{path_src}"," --style-guide /src/tests/example_style_guide.json --tableau-workbook {filepath}"])
         logger.debug('---end testing---')
     text = '#!/bin/bash\n' +'echo Starting\n' + '\n'.join(commands) + '\necho Showing outputs:\n' + '\ncat /github/workspace/outputs.txt\n'
     with open('commands.sh','w') as f:
