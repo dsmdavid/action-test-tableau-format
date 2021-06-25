@@ -11,7 +11,7 @@ RUN pip install --upgrade pip
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 
-COPY ./src/ /src/
+COPY ./src_cd/ /src/
 RUN chmod 777 -R /src
 COPY ./entrypoint.sh .
 RUN chmod +x ./entrypoint.sh
