@@ -12,7 +12,9 @@ echo 'pwd'
 pwd
 echo 'ls'
 ls -al
-
+echo '£££££'
+cd /
+ls -al
 echo "finding file test_all.py"
 find . -name test_all.py
 echo "end finding"
