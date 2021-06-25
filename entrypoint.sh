@@ -29,8 +29,10 @@ echo "####### "
 echo "#######"
 echo "#######"
 echo "#######"
-echo "commands to be ran:"
+echo "finding commands.sh"
 find . -name commands.sh
+
+echo "commands to be ran:"
 cat ./commands.sh
 echo "#######"
 echo "#######"
