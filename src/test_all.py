@@ -35,6 +35,7 @@ if __name__ == '__main__':
     print('running')
     print('logging - path')
     print(os.environ.get('PATH_TO_JSON', 'PATH_TO_JSON not found in envs')
+    print('\n')
     try:
         modified_files = get_modified_files()
     except:
@@ -44,7 +45,7 @@ if __name__ == '__main__':
     print(modified_files)
     commands = []
     for file in modified_files:
-        logger.debug(f'--- Testing file {file}')
+        logger.debug(f'--- Testing file {file}') 
         filepath = os.path.join('/github/workspace', file)
         logger.debug(f'filepath: {filepath}')
         path_src = get_script_dir()
