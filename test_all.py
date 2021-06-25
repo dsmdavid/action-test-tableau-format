@@ -5,8 +5,7 @@ from functools import wraps
 from log import MyLogger
 
 logger = MyLogger(log_file='style-check.log', log_path='logs', name=__name__)
-path_to_json = os.environ.get('PATH_TO_JSON', 'style_guide/example_style_guide.json')
-path_to_json = os.path.join('/github/workspace/', path_to_json)
+
 def log_start(func):
     @wraps(func)
     def call(*arg, **kwargs):
@@ -32,10 +31,11 @@ def get_script_dir(follow_symlinks=True):
     return os.path.dirname(path)
 @log_start
 def get_path_to_guide():
+
     path_to_json = os.environ.get('PATH_TO_JSON')
     if path_to_json:
         logger.debug(f'Path_to_json: {path_to_json}')
-        return path_to_json
+        return os.path.join('/github/workspace/', path_to_json)
     else:
         logger.error('Style guide was not found')
     sys.exit(1)
