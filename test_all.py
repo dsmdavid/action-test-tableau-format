@@ -57,13 +57,13 @@ if __name__ == '__main__':
         logger.debug(f'filepath: {filepath}')
         path_src = get_script_dir()
         path_src = os.path.join(path_src, 'validator_cli.py')
-        command = ' '.join(["python", f"{path_src}","--style-guide",path_to_json, f"--tableau-workbook {filepath}", ">> /github/workspace/outputs.txt"])
-        commands.append(f"echo 'processing {filepath}' >> /github/workspace/outputs.txt")
+        command = ' '.join(["python", f"{path_src}","--style-guide",path_to_json, f"--tableau-workbook {filepath}", ">> ./github/workspace/outputs.txt"])
+        commands.append(f"echo 'processing {filepath}' >> ./github/workspace/outputs.txt")
         commands.append(command)
         logger.debug(f'command: {command}')
 
         logger.debug('---end testing---')
-    text = '#!/bin/bash\n' +'echo Starting\n' + '\n'.join(commands) + '\necho Showing outputs:\n' + '\ncat /github/workspace/outputs.txt\n'
+    text = '#!/bin/bash\n' +'echo Starting\n' + '\n'.join(commands) + '\necho Showing outputs:\n' + '\ncat ./github/workspace/outputs.txt\n'
     path_to_commands = os.path.join(os.getcwd(), 'commands.sh')
     print(f'Saving commands to {path_to_commands}')
     with open(path_to_commands,'w') as f:
