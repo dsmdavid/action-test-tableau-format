@@ -8,18 +8,19 @@ cat modified_files.txt
 echo "logging ENV"
 env
 echo "##########"
+ls -al
 echo " Script to run:"
-cat ./test_all.py
+cat ./app/test_all.py
 
 echo "Calling script: \n"
 # /bin/bash
-python ./test_all.py
+python ./app/test_all.py
 echo "####### "
 echo "#######"
 echo "#######"
 echo "#######"
 echo "commands to be ran:"
-cat ./commands.sh
+cat ./app/commands.sh
 echo "#######"
 echo "#######"
 echo "#######"
