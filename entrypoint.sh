@@ -7,10 +7,10 @@ cat modified_files.txt
 
 echo "Calling script: python ./app/test_all.py \n"
 # /bin/bash
-python ./app/test_all.py
+python /app/test_all.py
 echo "####### "
 echo "These commands will be run:"
-cat ./commands.sh
+cat /commands.sh
 echo "#######"
-chmod +x ./commands.sh
-./commands.sh
+chmod +x /commands.sh
+/commands.sh
