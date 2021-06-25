@@ -38,7 +38,6 @@ def get_path_to_guide():
         return path_to_json
     else:
         logger.error('Style guide was not found')
-
     sys.exit(1)
 
 if __name__ == '__main__':
