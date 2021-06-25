@@ -14,7 +14,7 @@ cat ./test_all.py
 echo "Calling script: \n"
 # /bin/bash
 python ./test_all.py
-echo "#######"
+echo "####### "
 echo "#######"
 echo "#######"
 echo "#######"
