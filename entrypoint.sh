@@ -30,7 +30,8 @@ echo "#######"
 echo "#######"
 echo "#######"
 echo "commands to be ran:"
-cat ./app/commands.sh
+find . -name commands.sh
+cat ./commands.sh
 echo "#######"
 echo "#######"
 echo "#######"
