@@ -8,6 +8,9 @@ cat modified_files.txt
 echo "logging ENV"
 env
 echo "##########"
+echo 'pwd'
+pwd
+echo 'ls'
 ls -al
 echo " Script to run:"
 cat ./app/test_all.py
