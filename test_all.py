@@ -64,5 +64,8 @@ if __name__ == '__main__':
 
         logger.debug('---end testing---')
     text = '#!/bin/bash\n' +'echo Starting\n' + '\n'.join(commands) + '\necho Showing outputs:\n' + '\ncat /github/workspace/outputs.txt\n'
-    with open('./app/commands.sh','w') as f:
+    path_to_commands = os.path.join(os.getcwd(), 'commands.sh')
+    print(f'Saving commands to {path_to_commands}')
+    with open(path_to_commands,'w') as f:
         f.writelines(text)
+    print(f'Commands saved to {path_to_commands}')

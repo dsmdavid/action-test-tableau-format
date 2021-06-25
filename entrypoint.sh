@@ -28,7 +28,7 @@ python ./app/test_all.py
 echo "####### "
 echo "#######"
 echo "#######"
-echo "####### "
+echo "#######"
 echo "finding commands.sh"
 find . -name commands.sh
 
