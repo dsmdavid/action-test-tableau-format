@@ -15,7 +15,7 @@ def log_start(func):
     return call 
 @log_start
 def get_modified_files():
-    with open('./modified_files.txt','r') as f:
+    with open('./github/workspace/modified_files.txt','r') as f:
         files = f.read().replace('"','')
     file_list = []
     for file in files.split(' '):
