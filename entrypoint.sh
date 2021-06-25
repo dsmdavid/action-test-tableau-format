@@ -4,6 +4,9 @@ time=$(date)
 echo ::set-ouput name=time::$time
 echo "The modified files are:"
 cat modified_files.txt
+
+echo "logging ENV"
+env
 echo "Calling script: \n"
 # /bin/bash
 python ./src/test_all.py
