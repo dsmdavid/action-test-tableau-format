@@ -14,4 +14,7 @@ cat ./commands.sh
 echo "#######"
 chmod +x ./commands.sh
 ./commands.sh
+echo "££££££££££££££££££"
+echo "/github/workspace/outputs.txt"
+cat /github/workspace/outputs.txt
 find . -name output.txt
