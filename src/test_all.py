@@ -33,6 +33,8 @@ def get_script_dir(follow_symlinks=True):
 
 if __name__ == '__main__':
     print('running')
+    print('logging - path')
+    print(os.environ.get('PATH_TO_JSON', 'PATH_TO_JSON not found in envs')
     try:
         modified_files = get_modified_files()
     except:
