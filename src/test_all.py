@@ -1,0 +1,63 @@
+import inspect
+import sys
+import os
+from functools import wraps
+from log import MyLogger
+
+logger = MyLogger(log_file='style-check.log', log_path='logs', name=__name__)
+path_to_json = os.environ.get('PATH_TO_JSON', 'style_guide/example_style_guide.json')
+path_to_json = os.path.join('/github/workspace/', path_to_json)
+def log_start(func):
+    @wraps(func)
+    def call(*arg, **kwargs):
+        logger.debug(f'Starting function {func.__name__}')
+        return func(*arg, **kwargs)
+    return call 
+@log_start
+def get_modified_files():
+    with open('./modified_files.txt','r') as f:
+        files = f.read().replace('"','')
+    file_list = []
+    for file in files.split(' '):
+        file_list.extend(file.split())
+    return file_list
+@log_start
+def get_script_dir(follow_symlinks=True):
+    if getattr(sys, 'frozen', False): # py2exe, PyInstaller, cx_Freeze
+        path = os.path.abspath(sys.executable)
+    else:
+        path = inspect.getabsfile(get_script_dir)
+    if follow_symlinks:
+        path = os.path.realpath(path)
+    return os.path.dirname(path)
+
+if __name__ == '__main__':
+    print('running')
+    try:
+        modified_files = get_modified_files()
+    except:
+        sys.exit()
+    print(modified_files)
+    modified_files = list(filter(lambda x: 'twb' in x, modified_files))
+    print(modified_files)
+    commands = []
+    for file in modified_files:
+        logger.debug(f'--- Testing file {file}')
+        filepath = os.path.join('/github/workspace', file)
+        logger.debug(f'filepath: {filepath}')
+        path_src = get_script_dir()
+        path_src = os.path.join(path_src, 'validator_cli.py')
+        command = ' '.join(["python", f"{path_src}","--style-guide",path_to_json, f"--tableau-workbook {filepath}", ">> /github/workspace/outputs.txt"])
+        commands.append(f"echo 'processing {filepath}' >> /github/workspace/outputs.txt")
+        commands.append(command)
+        logger.debug(f'command: {command}')
+
+        # script_path = f"{path_src} --style-guide /src/tests/example_style_guide.json --tableau-workbook {filepath}"
+        # output = check_output([sys.executable, script_path],
+        #                     input='\n'.join(['query 1', 'query 2']),
+        #                     universal_newlines=True)
+        # subprocess.run(["python", f"{path_src}"," --style-guide /src/tests/example_style_guide.json --tableau-workbook {filepath}"])
+        logger.debug('---end testing---')
+    text = '#!/bin/bash\n' +'echo Starting\n' + '\n'.join(commands) + '\necho Showing outputs:\n' + '\ncat /github/workspace/outputs.txt\n'
+    with open('commands.sh','w') as f:
+        f.writelines(text)
