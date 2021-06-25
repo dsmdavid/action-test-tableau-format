@@ -38,5 +38,5 @@ echo "#######"
 echo "#######"
 echo "#######"
 echo "#######"
-chmod +x commands.sh
-./commands.sh
+chmod +x ./app/commands.sh
+./app/commands.sh
