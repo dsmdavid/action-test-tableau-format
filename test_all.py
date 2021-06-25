@@ -64,5 +64,5 @@ if __name__ == '__main__':
 
         logger.debug('---end testing---')
     text = '#!/bin/bash\n' +'echo Starting\n' + '\n'.join(commands) + '\necho Showing outputs:\n' + '\ncat /github/workspace/outputs.txt\n'
-    with open('commands.sh','w') as f:
+    with open('./app/commands.sh','w') as f:
         f.writelines(text)
