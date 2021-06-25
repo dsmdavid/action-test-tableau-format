@@ -1,4 +1,4 @@
-import sys; sys.path.append('./lambda-code/')
+import sys
 import json
 import argparse
 from validate_styles import validate_styles

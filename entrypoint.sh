@@ -9,11 +9,11 @@ echo "logging ENV"
 env
 echo "##########"
 echo " Script to run:"
-cat ./src_cd/test_all.py
+cat ./test_all.py
 
 echo "Calling script: \n"
 # /bin/bash
-python ./src_cd/test_all.py
+python ./test_all.py
 echo "#######"
 echo "#######"
 echo "#######"
