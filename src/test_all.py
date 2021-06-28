@@ -43,11 +43,13 @@ def get_path_to_guide():
     sys.exit(1)
 
 if __name__ == '__main__':
+    logger.info('Start script')
+    logger.debug('Setting logger levels')
+    
     logger_level = os.environ.get('LOGGER-LEVEL', 'INFO')
     logger_set_level = logger_levels.get(logger_level, logger_levels['INFO'])
     print(f'The logger level provided was {logger_level}. This will be set: {logger_set_level}')
     logger.setLevel(logger_set_level)
-    print('running')
     try:
         modified_files = get_modified_files()
     except:

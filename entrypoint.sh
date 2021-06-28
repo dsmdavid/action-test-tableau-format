@@ -1,6 +1,7 @@
 #!/bin/sh -l
 echo \"$1\" > modified_files.txt
 time=$(date)
+env
 echo "Script ran at: $time"
 echo "The modified files are:"
 cat modified_files.txt
