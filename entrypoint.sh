@@ -5,9 +5,13 @@ echo ::set-ouput name=time::$time
 echo "The modified files are:"
 cat modified_files.txt
 cd /
-echo "Calling script: python ./app/test_all.py \n"
+echo "listing files"
+ls -al
+echo "finding test_all.py"
+find . -name test_all.py
+echo "Calling script: python ./app/src/test_all.py \n"
 # /bin/bash
-python ./app/test_all.py
+python ./app/src/test_all.py
 echo "####### "
 echo "These commands will be run:"
 cat ./commands.sh
