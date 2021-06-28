@@ -2,7 +2,7 @@ import inspect
 import sys
 import os
 from functools import wraps
-from log import MyLogger
+from log import MyLogger, logger_levels
 
 logger = MyLogger(log_file='style-check.log', log_path='logs', name=__name__)
 
@@ -38,9 +38,17 @@ def get_path_to_guide():
         return os.path.join('/github/workspace/', path_to_json)
     else:
         logger.error('Style guide was not found')
+        print('::error ::The style guide was not found')
+
     sys.exit(1)
 
 if __name__ == '__main__':
+    logger_level = os.environ.get('LOGGER-LEVEL', 'INFO')
+    try:
+        MyLogger.setLevel(logger_levels[logger_level])
+    except:
+        print('::warning ::Not a valid logger-level provided, using INFO as default')
+        MyLogger.setLevel(logger_levels['INFO'])
     print('running')
     try:
         modified_files = get_modified_files()

@@ -10,7 +10,11 @@ inputs:
     required: true
   path_to_json:
     description: 'Path to the json style_guide inside the repo'
-    required: true  
+    required: true
+  logger-level:
+    description: 'The python logging level for the script: DEBUG, INFO, ... CRITICAL'
+    required: false
+    default: INFO
 runs:
   using: 'docker'
   image: 'Dockerfile'

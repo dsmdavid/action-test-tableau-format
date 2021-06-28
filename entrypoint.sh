@@ -1,7 +1,7 @@
 #!/bin/sh -l
 echo \"$1\" > modified_files.txt
 time=$(date)
-echo ::set-ouput name=time::$time
+echo "Script ran at: $time"
 echo "The modified files are:"
 cat modified_files.txt
 cd /
@@ -13,17 +13,17 @@ echo "::debug::finding test_all.py"
 echo "::debug::$(find . -name test_all.py)"
 echo "::endgroup::"
 
+echo "::group:: Preparing script for validation"
 echo "Calling script: python ./app/src/test_all.py \n"
 python ./app/src/test_all.py
 echo "####### "
 echo "::debug::These commands will be run:"
 echo "::debug::$(cat ./commands.sh)"
 echo "#######"
+echo "::endgroup::"
+
 echo "::group::Format Validation"
 chmod +x ./commands.sh
 ./commands.sh
 echo "::endgroup::"
-echo "::debug::The output is:"
-echo "::debug::$(find . -name output.txt)"
-echo "::debug::$(cat /github/workspace/outputs.txt)"
-
+echo "The output can be found at $(find . -name output.txt)"
