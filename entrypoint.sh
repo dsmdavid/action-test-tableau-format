@@ -5,13 +5,6 @@ echo "Script ran at: $time"
 echo "The modified files are:"
 cat modified_files.txt
 cd /
-echo "::group::Debug info"
-echo "Set ACTIONS_STEP_DEBUG variable to True to see these logs"
-echo "::debug::Listing files"
-echo "::debug::$(ls -al)"
-echo "::debug::finding test_all.py"
-echo "::debug::$(find . -name test_all.py)"
-echo "::endgroup::"
 
 echo "::group:: Preparing script for validation"
 echo "Calling script: python ./app/src/test_all.py \n"
