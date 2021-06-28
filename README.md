@@ -12,11 +12,6 @@ Based on: [Brian Crant's tableau style validator](https://github.com/bcrant/tabl
 ## path_to_json:
     Path to a file in the repository that contains the style guide. e.g.
     `style_guide/example_style_guide.json`
-
-## logger-level:
-    The level to set the python logger to. Must be one of: 
-    `DEBUG, INFO, WARNING, ERROR, CRITICAL`
-
 # Outputs:
-    A file to the root folder of the repo called `outputs.txt`
+    A file to the root folder of the repo called `outputs.txt`. It can be uploaded using artifacts.
     
