@@ -4,6 +4,13 @@ from logging import Logger
 from logging.handlers import TimedRotatingFileHandler
 import os
 
+logger_levels = {
+    'CRITICAL': logging.CRITICAL,
+    'ERROR': logging.ERROR,
+    'WARNING': logging.WARNING,
+    'INFO': logging.INFO,
+    'DEBUG' : logging.DEBUG
+}
 class MyLogger(Logger):
     def __init__(
         self,
