@@ -14,6 +14,7 @@ def log_start(func):
     return call 
 @log_start
 def get_modified_files():
+    # this file is created from an upstream action
     with open('./github/workspace/modified_files.txt','r') as f:
         files = f.read().replace('"','')
     file_list = []
@@ -31,7 +32,7 @@ def get_script_dir(follow_symlinks=True):
     return os.path.dirname(path)
 @log_start
 def get_path_to_guide():
-
+    '''Returns the actual path to the style guide based on action input'''
     path_to_json = os.environ.get('PATH_TO_JSON')
     if path_to_json:
         logger.debug(f'Path_to_json: {path_to_json}')
