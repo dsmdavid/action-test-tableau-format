@@ -61,7 +61,7 @@ jobs:
              echo "" >> summary.txt
              echo "" >> summary.txt
              echo "" >> summary.txt
-             echo " --------- --------- --------" >> summary.txt
+             echo " --------- --------- -------- " >> summary.txt
              echo "Detailed review below:" >> summary.txt
              cat ./outputs.txt >> summary.txt
              sed -i 's;\processing /github/workspace\(.*\)$;## \1;gi' summary.txt
