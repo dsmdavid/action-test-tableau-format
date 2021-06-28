@@ -45,7 +45,7 @@ def get_path_to_guide():
 if __name__ == '__main__':
     logger.info('Start script')
     logger.debug('Setting logger levels')
-    
+
     logger_level = os.environ.get('LOGGER-LEVEL', 'INFO')
     logger_set_level = logger_levels.get(logger_level, logger_levels['INFO'])
     print(f'The logger level provided was {logger_level}. This will be set: {logger_set_level}')
@@ -55,8 +55,9 @@ if __name__ == '__main__':
     except:
         sys.exit()
     path_to_json = get_path_to_guide()
-    print(modified_files)
+    logger.debug(f'The initial list of files {modified_files}')
     modified_files = list(filter(lambda x: 'twb' in x, modified_files))
+    logger.debug(f'The twb files are:\n {modified_files}')
     print(modified_files)
     commands = []
     for file in modified_files:
