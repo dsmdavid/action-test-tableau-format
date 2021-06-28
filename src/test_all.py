@@ -44,11 +44,9 @@ def get_path_to_guide():
 
 if __name__ == '__main__':
     logger_level = os.environ.get('LOGGER-LEVEL', 'INFO')
-    try:
-        MyLogger.setLevel(logger_levels[logger_level])
-    except:
-        print('::warning ::Not a valid logger-level provided, using INFO as default')
-        MyLogger.setLevel(logger_levels['INFO'])
+    logger_set_level = logger_levels.get(logger_level, logger_levels['INFO'])
+    print(f'The logger level provided was {logger_level}. This will be set: {logger_set_level}')
+    MyLogger.setLevel(logger_set_level)
     print('running')
     try:
         modified_files = get_modified_files()
